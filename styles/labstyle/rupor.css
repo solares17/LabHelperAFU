@@ -2,6 +2,7 @@
 .video-container{
   display: flex;
   justify-content: center; /* Центрирование по горизонтали */
+  margin-bottom: 2vh
 }
 .info-text h2, p{
   color: #000;
