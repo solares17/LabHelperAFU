@@ -1,4 +1,3 @@
-
 const ANTENNA_PARAMS = {
     A1: {
         label: 'А1',
@@ -9,6 +8,11 @@ const ANTENNA_PARAMS = {
         G_dB: 12.0,   // <-- сюда коэффициент усиления А2
     },
 };
+ 
+// Таблицы снимались при стандартном подключении:
+//   A1 = генератор, A2 = индикатор.
+// При инверсии логика добавит поправку dE_swap = G_A1 - G_A2.
+const STANDARD_ROLES = { generator: 'A1', indicator: 'A2' };
 
 
 /**
