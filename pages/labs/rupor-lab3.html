@@ -32,9 +32,88 @@
             </iframe>
         </div>
         
-       
+<div class="uoz-lab-meta">
+  <div class="uoz-section-header">
+    <h2>Рупорные антенны — Задание</h2>
+  </div>
 
-    
+  <div class="uoz-card" id="ant-card-tasks">
+    <button class="uoz-card-toggle" onclick="antToggle('ant-card-tasks')" aria-expanded="false">
+      <span class="uoz-card-title">
+        Методика проведения лабораторного эксперимента
+        <span class="uoz-card-subtitle">5 этапов</span>
+      </span>
+      <span class="uoz-chevron">▼</span>
+    </button>
+    <div class="uoz-card-body">
+
+      <p>
+        Цель — приобрести навыки измерения КУ, максимального фазового сдвига рупорных пирамидальных антенн
+      </p>
+
+      <ul class="uoz-task-list">
+
+        <li>
+          <span class="uoz-task-num">1</span>
+          <div>
+            <span class="uoz-step-badge">Этап</span><br>
+            <strong>Первая процедура.</strong>
+              Алгебраическое вычисление ширины главного лепестка 
+			  диаграммы направленности вдоль основного направления 0° по азимуту и по 
+			  половиной мощности.
+          </div>
+        </li>
+
+        <li>
+          <span class="uoz-task-num">2</span>
+          <div>
+            <span class="uoz-step-badge">Этап</span><br>
+            <strong>Вторая процедура.</strong>
+            Подключаем генератор высокой частоты с фиксированной частотой. 
+			  В соответствии с вариантами задания, приведённые в теоретической 
+			  части лабораторной работы, подключаем генератор высокой частоты к 
+			  передающей антенне, а измерительную антенну подключаем к индикатору 
+			  напряжённости лабораторного комплекса. 
+          </div>
+        </li>
+
+        <li>
+          <span class="uoz-task-num">3</span>
+          <div>
+            <span class="uoz-step-badge">Этап</span><br>
+            <strong>Третья процедура.</strong>
+              Вращаем измерительную антенну в соответствии 
+			  с угловым распределением диаграммы направленности по часовой стрелке 
+			  по азимуту. Это выглядит вот так.
+          </div>
+        </li>
+
+        <li>
+          <span class="uoz-task-num">4</span>
+          <div>
+            <span class="uoz-step-badge">Этап</span><br>
+            <strong>Четвертая процедура.</strong>
+            Фиксируем значение индикатор напряжённости в 
+			  соответствии значением углового распределения по азимуту на сферической 
+			  системе координат и в нормированной системе координат, принимая максимальное 
+			  значение индикатор напряжённости вдоль направления 0° за максимальное, а 
+			  фиксированные значения рассчитываются в соответствии с главным значе чение 
+			  и откладывается в системе система координат.
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+function antToggle(id){var c=document.getElementById(id);var b=c.querySelector('.uoz-card-toggle');var o=c.classList.toggle('uoz-open');b.setAttribute('aria-expanded',o)}
+</script>
+
+		
+    <div id="include-rupor"></div>    
+       
     </div>
 </div>
 
