@@ -1,4 +1,3 @@
-/**
  * logic.js — Логика эмулятора АФУ
  *
  * Зависит от: data.js (должен быть подключён раньше)
@@ -20,7 +19,6 @@
  * Линейная интерполяция между двумя точками.
  * Если x вне диапазона — зажимаем к ближайшему краю.
  */
-
 function lerp(x0, y0, x1, y1, x) {
     if (x1 === x0) return y0;
     const t = (x - x0) / (x1 - x0);
@@ -161,8 +159,26 @@ function computeE(state) {
         }
     }
  
+    // ── Поправка на инверсию ролей антенн ──
+    // Таблицы сняты при стандарте: A1=генератор, A2=индикатор.
+    // Если роли поменяли — добавляем разницу коэффициентов усиления.
+    let dE_swap = 0;
+    const stdGen = STANDARD_ROLES.generator;   // 'A1'
+    const stdInd = STANDARD_ROLES.indicator;   // 'A2'
+    const curGen = state.roleA1 === 'generator' ? 'A1' : 'A2';
+    const curInd = state.roleA1 === 'indicator' ? 'A1' : 'A2';
+    const isInverted = curGen !== stdGen;
+    if (isInverted) {
+        // При инверсии: генератор теперь A2, индикатор — A1
+        // Поправка = (G_нового_генератора - G_стандартного_генератора)
+        //          + (G_стандартного_индикатора - G_нового_индикатора) 
+        // Упрощённо: разница усилений между антеннами, взятая со знаком
+        dE_swap = (ANTENNA_PARAMS[curGen].G_dB - ANTENNA_PARAMS[stdGen].G_dB)
+                + (ANTENNA_PARAMS[stdInd].G_dB - ANTENNA_PARAMS[curInd].G_dB);
+    }
+ 
     // ── Итог (всё складывается в dB-арифметике) ──
-    return E_base + dE_angle + dE_probe + dE_freq + atten_dB;
+    return E_base + dE_angle + dE_probe + dE_freq + atten_dB + dE_swap;
 }
  
 /**
