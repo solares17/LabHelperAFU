@@ -105,3 +105,8 @@
 .uoz-formula{background:var(--uoz-code-bg);border-left:3px solid var(--uoz-accent);border-radius:0 6px 6px 0;padding:.6rem 1rem;font-family:var(--uoz-mono);font-size:.82rem;color:#a8d1ff;margin:.6rem 0;overflow-x:auto;white-space:nowrap}
 .uoz-schema-wrap{background:var(--uoz-code-bg);border:1px solid var(--uoz-border);border-radius:8px;padding:.75rem;margin:.8rem 0;overflow-x:auto}
 .uoz-schema-wrap svg{display:block;margin:0 auto;max-width:100%}
+
+.video-container .info-text{
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+}
