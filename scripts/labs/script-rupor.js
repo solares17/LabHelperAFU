@@ -1,4 +1,4 @@
-    window.initRuporLab = function() {
+
  
         // ── Микроамперметр ──
         const meterCanvas = document.getElementById('meterCanvas');
@@ -238,4 +238,4 @@
         document.getElementById('btn-toggle').addEventListener('click', function () {
             this.classList.toggle('active');
         });
-    };
+    
