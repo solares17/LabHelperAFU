@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+.video-container .info-text{
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+}
+.info-text{
+  color: #000;
+}
 :root{
   --uoz-bg:#05a4ba;
   --uoz-surface:#0093a2;
@@ -106,10 +113,3 @@
 .uoz-schema-wrap{background:var(--uoz-code-bg);border:1px solid var(--uoz-border);border-radius:8px;padding:.75rem;margin:.8rem 0;overflow-x:auto}
 .uoz-schema-wrap svg{display:block;margin:0 auto;max-width:100%}
 
-.video-container .info-text{
-  display: flex;
-  justify-content: center; /* Центрирование по горизонтали */
-}
-.info-text{
-  color: #000;
-}
