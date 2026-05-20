@@ -18,7 +18,7 @@
     
     <div class="content-container">
         <div class="info-text">
-        <h2>Лабораторная работа №1 - Измерение КУ и фазовых сдвигов</h2>
+        <h2>Лабораторная работа №4 - Измерение длины волны излучателя</h2>
         <p>
         Для выполнения лабораторной работы ознакомьтесь с видео:
         </p>
@@ -26,24 +26,105 @@
 
         
         <div class="video-container">
-            <iframe width="560" height="450" src="https://www.youtube.com/embed/JF2TPR4Tkzw?si=ZqzvlIrDDrn9vQCP" 
+            <iframe width="800" height="450" src="https://www.youtube.com/embed/GDT1kcDHJJ8?si=wBsmNesLFmX4_LRI" 
             title="YouTube video player"  frameborder="0" allowfullscreenn>
             </iframe>
         </div>
-        <div class="info-text">
-        <p>
-        Эмуляция лабораторного стенда:
-        </p>
-        </div> 
-       
+        
+<div class="uoz-lab-meta">
+  <div class="uoz-section-header">
+    <h2>Рупорные антенны — Задание</h2>
+  </div>
 
-    
+  <div class="uoz-card" id="ant-card-tasks">
+    <button class="uoz-card-toggle" onclick="antToggle('ant-card-tasks')" aria-expanded="false">
+      <span class="uoz-card-title">
+        Методика проведения лабораторного эксперимента
+        <span class="uoz-card-subtitle">5 этапов</span>
+      </span>
+      <span class="uoz-chevron">▼</span>
+    </button>
+    <div class="uoz-card-body">
+
+      <p>
+        Цель —  приобретение навыков исследования построения диаграммы направленности пирамидального 
+		  рупора плоскости магнитного поля с использованием лабораторного комплекса 
+		  основные параметры рупорных антенн.
+      </p>
+
+      <ul class="uoz-task-list">
+
+        <li>
+          <span class="uoz-task-num">1</span>
+          <div>
+            <span class="uoz-step-badge">Этап</span><br>
+            <strong>Первая процедура.</strong>
+              С помощью простейших алгебраческих вычислений определяем ширину главного 
+			  песка диаграммы направленности в плоскости магнитного поля вдоль основного 
+			  в вдоль основного направления 0° и по половиной мощности.
+          </div>
+        </li>
+
+        <li>
+          <span class="uoz-task-num">2</span>
+          <div>
+            <span class="uoz-step-badge">Этап</span><br>
+            <strong>Вторая процедура.</strong>
+            Подключаем генератора высокой частоты, предварительно установив 
+			  соответствие собственного номера с номером варианта теоретической части лабораторной работы, 
+			  соответствующей последней цифры, цифре студенческого билета. Подключаем его к 
+			  передающей рупорной антенны. Далее измерительную рупорную антенну подключаем 
+			  к лабораторному комплексу основные параметры рупорной антенны и следим 
+			  за показанием индикатора напряжённости.
+          </div>
+        </li>
+
+        <li>
+          <span class="uoz-task-num">3</span>
+          <div>
+            <span class="uoz-step-badge">Этап</span><br>
+            <strong>Третья процедура.</strong>
+              Вращая приёмную рупорную антенну по часовой стрелке, изменяя 
+			  соответствующее значение углового распределения в данном случае 
+			  по углу места, потому что мы повернули рупорную антенну на 90°. 
+			  Фиксируем значение индикатора напряжённости в соответствии с 
+			  изменением значения углового распределения.
+          </div>
+        </li>
+
+        <li>
+          <span class="uoz-task-num">4</span>
+          <div>
+            <span class="uoz-step-badge">Этап</span><br>
+            <strong>Четвертая процедура.</strong>
+            определив максимальное значение индикатора напряжённости к децибела вдоль 
+			  основного направления 0°, мы определяем относительные значения с индикатора 
+			  напряжённости соответствующие изменения углового распределения по значениям от нуля до 
+			  единицы. Соответственно, единица - это будет максимальное значение. Далее, эти 
+			  соответствующие показатели углового распределения напряжённости 
+			  рупорной антенны в плоскости магнитного поля мы наносим на сферическую систему 
+			  координат, а также в многорифмическую систему координат, которая будет 
+			  соответствовать уже нормированным значениям.
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+function antToggle(id){var c=document.getElementById(id);var b=c.querySelector('.uoz-card-toggle');var o=c.classList.toggle('uoz-open');b.setAttribute('aria-expanded',o)}
+</script>
+
+		
+    <div id="include-rupor"></div>    
     </div>
 </div>
 
   
 <div id="include-footer"></div>
-<script src="/LabHelperAFU/scripts/stand-antenna.js"></script>
+<script src="/LabHelperAFU/scripts/chat.js"></script>
 <script src="/LabHelperAFU/scripts/include.js"></script>
 
 </body>
