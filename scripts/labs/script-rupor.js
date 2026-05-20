@@ -1,4 +1,4 @@
-    document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', () => {
  
         // ── Микроамперметр ──
         const meterCanvas = document.getElementById('meterCanvas');
