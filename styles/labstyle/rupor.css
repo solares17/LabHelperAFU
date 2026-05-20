@@ -50,7 +50,8 @@
   font-size:1.35rem;
   font-weight:700;
   margin:0;
-  letter-spacing:-.01em}
+  letter-spacing:-.01em;
+  color:#000}
 
 .uoz-card{
   background:var(--uoz-surface);
