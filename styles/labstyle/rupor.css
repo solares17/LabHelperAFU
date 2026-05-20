@@ -6,7 +6,10 @@
 .info-text h2, p{
   color: #000;
   text-align: center;
-  margin: 4vh;
+  margin: 2vh
+}
+.info-text h2{
+  margin-top: 5vh;
 }
 :root{
   --uoz-bg:#05a4ba;
