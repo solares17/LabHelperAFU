@@ -3,10 +3,10 @@
   display: flex;
   justify-content: center; /* Центрирование по горизонтали */
 }
-.info-text{
-  display: flex;
-  justify-content: center;
+.info-text h2, p{
   color: #000;
+  text-align: center;
+  margin: 4vh;
 }
 :root{
   --uoz-bg:#05a4ba;
