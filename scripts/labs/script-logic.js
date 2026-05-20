@@ -229,8 +229,6 @@ function updateDisplays() {
 // ПОДПИСКА НА СОБЫТИЯ ИНТЕРФЕЙСА
 // ─────────────────────────────────────────────────────────────
  
-document.addEventListener('DOMContentLoaded', () => {
- 
     // Все элементы, при изменении которых нужен пересчёт
     const triggers = [
         'freq',
@@ -270,5 +268,5 @@ document.addEventListener('DOMContentLoaded', () => {
  
     // Первоначальный расчёт
     updateDisplays();
-});
+
  
