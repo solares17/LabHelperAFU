@@ -1,5 +1,5 @@
 
- 
+ (() => {
         // ── Микроамперметр ──
         const meterCanvas = document.getElementById('meterCanvas');
         const meterCtx = meterCanvas.getContext('2d');
@@ -238,4 +238,4 @@
         document.getElementById('btn-toggle').addEventListener('click', function () {
             this.classList.toggle('active');
         });
-    
+    })();
