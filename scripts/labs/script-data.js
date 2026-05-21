@@ -58,7 +58,7 @@ const TABLE_1_FREQ = {
         { f_MHz: 759,  E_mkVm: 7.9, I_mkA: 98  },
         { f_MHz: 784,  E_mkVm: -4.3, I_mkA: 120 },
         { f_MHz: 795,  E_mkVm: 3.5, I_mkA: 120 },
-        { f_MHz: 810,  E_mkVm: -00.3, I_mkA: 35  },
+        { f_MHz: 810,  E_mkVm: -0.3, I_mkA: 35  },
         { f_MHz: 819,  E_mkVm: 7.8, I_mkA: 120 },
         { f_MHz: 823,  E_mkVm: 4.3, I_mkA: 120  },
         { f_MHz: 835,  E_mkVm: 8.3, I_mkA: 120  },
