@@ -32,7 +32,7 @@ const TABLE_1_FREQ = {
         attenuator_dB: 0,
         probe:        'выкл',
     },
-    columns: ['f, МГц', 'E, dB', 'I, мкА'],
+    columns: ['f, МГц', 'E, мкВ/м', 'I, мкА'],
     rows: [
         { f_MHz: 410,  E_mkVm: -37.3, I_mkA: 0  },
         { f_MHz: 450,  E_mkVm: -26.1, I_mkA: 0  },
@@ -88,7 +88,7 @@ const TABLE_1_FREQ = {
         { f_MHz: 1186,  E_mkVm: 5.7, I_mkA: 65  },
         { f_MHz: 1205,  E_mkVm: 1.4, I_mkA: 20  },
         { f_MHz: 1220,  E_mkVm: -10.3, I_mkA: 82  },
-        { f_MHz: 1225,  E_mkVm: -16.6, I_mkA: 70 }
+        { f_MHz: 1225,  E_mkVm: -16.6, I_mkA: 70 },
     ],
 };
  
@@ -104,7 +104,7 @@ const TABLE_2_POWER = {
         attenuator_dB: 0,
         probe:        'выкл',
     },
-    columns: ['P, Вт', 'E, dB', 'I, мкА'],
+    columns: ['P, Вт', 'E, мкВ/м', 'I, мкА'],
     rows: [
         { P_W: 0.1,  E_mkVm: -39.5, I_mkA:  6.8  },
         { P_W: 0.5,  E_mkVm: -25.5, I_mkA: 19.2  },
@@ -129,7 +129,7 @@ const TABLE_3_ANGLE = {
         attenuator_dB: 0,
         probe:        'выкл',
     },
-    columns: ['θ, °', 'E, dB', 'I, мкА'],
+    columns: ['θ, °', 'E, мкВ/м', 'I, мкА'],
     rows: [
         { angle_deg: -90, E_mkVm: -20, I_mkA:  25  },
         { angle_deg: -75, E_mkVm: -14, I_mkA: 35  },
