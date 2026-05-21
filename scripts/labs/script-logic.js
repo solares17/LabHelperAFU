@@ -200,7 +200,7 @@ function updateDisplays() {
             eDisplay.textContent = 'нет данных';
         } else {
             const sign = E >= 0 ? '+' : '';
-            eDisplay.textContent = sign + E.toFixed(1) + ' дБ(мкВ/м)';
+            eDisplay.textContent = sign + E.toFixed(1) + ' дБ';
         }
     }
  
