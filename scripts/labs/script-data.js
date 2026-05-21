@@ -99,12 +99,12 @@ const TABLE_1_FREQ = {
 const TABLE_2_POWER = {
     title: 'Зависимость напряжённости от мощности',
     conditions: {
-        freq_MHz:     800,
+        freq_MHz:     835,
         angleA2_deg:  0,
         attenuator_dB: 0,
         probe:        'выкл',
     },
-    columns: ['P, Вт', 'E, мкВ/м', 'I, мкА'],
+    columns: ['P, Вт', 'E, dB', 'I, мкА'],
     rows: [
         { P_W: 0.1,  E_mkVm: -39.5, I_mkA:  6.8  },
         { P_W: 0.5,  E_mkVm: -25.5, I_mkA: 19.2  },
@@ -124,26 +124,26 @@ const TABLE_2_POWER = {
 const TABLE_3_ANGLE = {
     title: 'Диаграмма направленности А2',
     conditions: {
-        freq_MHz:     800,
+        freq_MHz:     835,
         power_W:      1.0,
         attenuator_dB: 0,
         probe:        'выкл',
     },
-    columns: ['θ, °', 'E, мкВ/м', 'I, мкА'],
+    columns: ['θ, °', 'E, dB', 'I, мкА'],
     rows: [
-        { angle_deg: -90, E_mkVm: -39.1, I_mkA:  7.0  },
-        { angle_deg: -75, E_mkVm: -33.4, I_mkA: 12.8  },
-        { angle_deg: -60, E_mkVm: -24.7, I_mkA: 22.5  },
-        { angle_deg: -45, E_mkVm: -14.2, I_mkA: 34.6  },
-        { angle_deg: -30, E_mkVm:  -5.8, I_mkA: 44.3  },
-        { angle_deg: -15, E_mkVm:  -1.2, I_mkA: 50.1  },
-        { angle_deg:   0, E_mkVm:   0.0, I_mkA: 52.0  },
-        { angle_deg:  15, E_mkVm:  -1.2, I_mkA: 50.1  },
-        { angle_deg:  30, E_mkVm:  -5.8, I_mkA: 44.3  },
-        { angle_deg:  45, E_mkVm: -14.2, I_mkA: 34.6  },
-        { angle_deg:  60, E_mkVm: -24.7, I_mkA: 22.5  },
-        { angle_deg:  75, E_mkVm: -33.4, I_mkA: 12.8  },
-        { angle_deg:  90, E_mkVm: -39.1, I_mkA:  7.0  },
+        { angle_deg: -90, E_mkVm: -20, I_mkA:  25  },
+        { angle_deg: -75, E_mkVm: -14, I_mkA: 35  },
+        { angle_deg: -60, E_mkVm: -12, I_mkA: 40  },
+        { angle_deg: -45, E_mkVm: -7.2, I_mkA: 40 },
+        { angle_deg: -30, E_mkVm:  -4.7, I_mkA: 60  },
+        { angle_deg: -15, E_mkVm:  1.4, I_mkA: 121  },
+        { angle_deg:   0, E_mkVm:   8.3, I_mkA: 120  },
+        { angle_deg:  15, E_mkVm:  1.4, I_mkA: 120  },
+        { angle_deg:  30, E_mkVm: -4.7, I_mkA: 60  },
+        { angle_deg:  45, E_mkVm: -7.2, I_mkA: 40  },
+        { angle_deg:  60, E_mkVm: -12, I_mkA: 40  },
+        { angle_deg:  75, E_mkVm: -14, I_mkA: 35  },
+        { angle_deg:  90, E_mkVm: -20, I_mkA:  25 },
     ],
 };
  
@@ -154,7 +154,7 @@ const TABLE_3_ANGLE = {
 const TABLE_4_PROBE = {
     title: 'Распределение поля вдоль линии (каретка)',
     conditions: {
-        freq_MHz:     800,
+        freq_MHz:     835,
         power_W:      1.0,
         angleA2_deg:  0,
         attenuator_dB: 0,
@@ -169,7 +169,7 @@ const TABLE_4_PROBE = {
         { d_cm: 20,  E_mkVm: -36.8, I_mkA:  9.8  },  // минимум (узел)
         { d_cm: 25,  E_mkVm: -17.2, I_mkA: 31.6  },
         { d_cm: 30,  E_mkVm:   0.0, I_mkA: 52.0  },  // максимум
-        { d_cm: 35,  E_mkVm: -17.2, I_mkA: 31.6  },
+        { d_cm: 35,  E_mkVm:  8.7, I_mkA: 100  },
         { d_cm: 40,  E_mkVm: -36.8, I_mkA:  9.8  },  // минимум
         { d_cm: 45,  E_mkVm: -17.8, I_mkA: 31.0  },
         { d_cm: 50,  E_mkVm:   0.0, I_mkA: 52.0  },  // максимум
