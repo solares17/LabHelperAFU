@@ -120,7 +120,7 @@ function updateDisplays() {
         } else if (E == null) {
             eDisplay.textContent = 'нет данных';
         } else {
-            eDisplay.textContent = (E >= 0 ? '+' : '') + E.toFixed(1) + ' дБ(мкВ/м)';
+            eDisplay.textContent = (E >= 0 ? '+' : '') + E.toFixed(1) + ' дБм';
         }
     }
 
