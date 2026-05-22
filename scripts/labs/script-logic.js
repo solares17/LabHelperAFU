@@ -141,30 +141,30 @@ function updateDisplays() {
 // ПОДПИСКА НА СОБЫТИЯ
 // ─────────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', () => {
-    ['freq', 'angle-slider', 'probe-slider', 'attenuator',
-     'role-a1', 'role-a2', 'ant-type-a2'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener('input',  updateDisplays);
-            el.addEventListener('change', updateDisplays);
-        }
-    });
+(() => { 
+    ['freq', 'angle-slider', 'probe-slider', 'attenuator', 
+     'role-a1', 'role-a2', 'ant-type-a2'].forEach(id => { 
+         const el = document.getElementById(id); 
+         if (el) { 
+             el.addEventListener('input',  updateDisplays); 
+             el.addEventListener('change', updateDisplays); 
+         } 
+    }); 
 
-    ['btn-toggle', 'btn-probe-toggle'].forEach(id => {
-        document.getElementById(id)
-            ?.addEventListener('click', () => setTimeout(updateDisplays, 0));
-    });
+    ['btn-toggle', 'btn-probe-toggle'].forEach(id => { 
+        document.getElementById(id) 
+            ?.addEventListener('click', () => setTimeout(updateDisplays, 0)); 
+    }); 
 
-    // Следим за крутилкой мощности через MutationObserver (на случай если она осталась)
-    const powerDisplay = document.getElementById('power-display');
-    if (powerDisplay) {
-        new MutationObserver(updateDisplays)
-            .observe(powerDisplay, { childList: true, subtree: true, characterData: true });
-    }
+    // Следим за крутилкой мощности через MutationObserver (на случай если она осталась) 
+    const powerDisplay = document.getElementById('power-display'); 
+    if (powerDisplay) { 
+        new MutationObserver(updateDisplays) 
+            .observe(powerDisplay, { childList: true, subtree: true, characterData: true }); 
+    } 
 
-    updateDisplays();
-});
+    updateDisplays(); 
+})();
 
 
  
