@@ -29,10 +29,10 @@
 
         /* Панели */
         .panel {
-            background: #21252e;
+            background: #0f455f;
             border-radius: 10px;
             padding: 20px;
-            border: 1px solid #2d3340;
+            border: 1px solid #0db8d4;
         }
 
         /* ─── Верхняя панель ─── */
