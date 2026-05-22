@@ -1,24 +1,14 @@
 <div class="emulator-wrapper">
- 
+
         <div class="app-title">Эмулятор АФУ</div>
- 
+
         <section class="panel top-panel">
             <div class="control-group">
                 <label for="freq">Частота (МГц)</label>
                 <input type="number" id="freq" min="410" max="1220" placeholder="410 – 1220">
             </div>
- 
-            <div class="knob-group">
-                <label>Мощность</label>
-                <div class="knob-container" id="power-knob-area">
-                    <div class="knob" id="power-knob">
-                        <div class="knob-marker"></div>
-                    </div>
-                </div>
-                <div class="digital-display" id="power-display">1.00 Вт</div>
-            </div>
         </section>
- 
+
         <section class="panel visual-panel">
             <div class="antenna-roles">
                 <div class="antenna-role-group">
@@ -35,12 +25,16 @@
                         <option value="indicator">Индикатор</option>
                         <option value="generator">Генератор</option>
                     </select>
+                    <select id="ant-type-a2" style="margin-top:6px;">
+                        <option value="horn">Рупор</option>
+                        <option value="magnetic">Магнитная</option>
+                    </select>
                 </div>
             </div>
             <div class="canvas-wrap">
                 <canvas id="mainCanvas" width="800" height="280"></canvas>
             </div>
- 
+
             <div class="sliders-container">
                 <div class="slider-group">
                     <div class="slider-header">
@@ -51,7 +45,7 @@
                     </div>
                     <input type="range" id="probe-slider" min="0" max="90" value="45" step="0.1">
                 </div>
- 
+
                 <div class="slider-group">
                     <label for="angle-slider">
                         Угол А2: <span class="slider-val" id="angle-value">0</span>°
@@ -60,23 +54,23 @@
                 </div>
             </div>
         </section>
- 
+
         <section class="panel bottom-panel">
             <div class="control-group">
                 <label>Питание</label>
                 <button class="btn-power" id="btn-toggle">ВКЛ / ВЫКЛ</button>
             </div>
- 
+
             <div class="control-group">
-                <label>Напряжённость, дБ</label>
+                <label>Напряжённость</label>
                 <div class="digital-display" id="field-display">—</div>
             </div>
- 
+
             <div class="control-group">
-                <label>Ток (мкА/м)</label>
+                <label>Ток (мкА)</label>
                 <canvas id="meterCanvas" width="200" height="110"></canvas>
             </div>
- 
+
             <div class="control-group">
                 <label for="attenuator">Аттенюатор</label>
                 <select id="attenuator">
@@ -90,6 +84,5 @@
                 </select>
             </div>
         </section>
- 
-    </div>
 
+    </div>
