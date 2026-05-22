@@ -159,39 +159,84 @@
                 mainCtx.strokeStyle = isMag ? '#00d4aa' : '#6b7a8d';
                 mainCtx.fillStyle   = isMag ? '#1a3a35'  : '#2a2f3a';
 
-                if (isMag) {
-                    // ── Магнитная антенна ──
-                    // Форма как на картинке: большой рупор + волновод + малый треугольный рупор
-                    // Все координаты относительно центра крепления (0,0), раскрыв смотрит в dir
+             if (isMag) {
+    // ── Рупорная антенна (как на фото) ──
+    // Все координаты относительно центра крепления (0,0)
+    // Переменная dir (1 или -1) определяет, в какую сторону смотрит главный (большой) рупор
 
-                    // 1. Большой рупор (левая часть)
-                    mainCtx.beginPath();
-                    mainCtx.moveTo(0,        -28);
-                    mainCtx.lineTo(50 * dir, -58);  // верхний угол раскрыва
-                    mainCtx.lineTo(50 * dir,  58);  // нижний угол раскрыва
-                    mainCtx.lineTo(0,          28);
-                    mainCtx.closePath();
-                    mainCtx.fill();
-                    mainCtx.stroke();
+    // 1. Задний кронштейн / волновод (направлен в противоположную сторону: -dir)
+    mainCtx.beginPath();
+    mainCtx.moveTo(-15 * dir, -12);            // верх у крепления
+    mainCtx.lineTo(-70 * dir, -8);             // верх начала сужения
+    mainCtx.lineTo(-70 * dir, 8);              // низ начала сужения
+    mainCtx.lineTo(-15 * dir, 12);             // низ у крепления
+    mainCtx.closePath();
+    mainCtx.fillStyle = '#d0d0d0';             // светло-серый
+    mainCtx.fill();
+    mainCtx.strokeStyle = '#999';
+    mainCtx.stroke();
 
-                    // 2. Волновод (прямоугольная секция посередине)
-                    const wdx = isRight ? 0 : -46;
-                    mainCtx.fillRect(wdx,   -16, 46, 32);
-                    mainCtx.strokeRect(wdx, -16, 46, 32);
+    // 2. Задний сужающийся наконечник (красновато-коричневый, как на фото)
+    mainCtx.beginPath();
+    mainCtx.moveTo(-70 * dir, -8);
+    mainCtx.lineTo(-120 * dir, -3);            // узкий конец (верх)
+    mainCtx.lineTo(-120 * dir, 3);             // узкий конец (низ)
+    mainCtx.lineTo(-70 * dir, 8);
+    mainCtx.closePath();
+    mainCtx.fillStyle = '#a0522d';             // цвет, похожий на ржавый/медный
+    mainCtx.fill();
+    mainCtx.strokeStyle = '#5c2e16';
+    mainCtx.stroke();
 
-                    // 3. Маленький треугольный рупор (правая часть — сужается к точке)
-                    const tx = isRight ? -46 : 46; // начало малого рупора
-                    mainCtx.beginPath();
-                    mainCtx.moveTo(tx,           -16); // верх волновода
-                    mainCtx.lineTo(tx + 32*dir,  -28); // верхний угол малого рупора
-                    mainCtx.lineTo(tx + 60*dir,    0); // острие (точка)
-                    mainCtx.lineTo(tx + 32*dir,   28); // нижний угол малого рупора
-                    mainCtx.lineTo(tx,            16); // низ волновода
-                    mainCtx.closePath();
-                    mainCtx.fill();
-                    mainCtx.stroke();
+    // Светлый блик на наконечнике (опционально, для объема)
+    mainCtx.beginPath();
+    mainCtx.arc(-120 * dir, 0, 3, 0, Math.PI * 2);
+    mainCtx.fillStyle = '#e0e0e0';
+    mainCtx.fill();
 
-                } else {
+    // 3. Большой главный рупор (направлен в сторону dir)
+    mainCtx.beginPath();
+    mainCtx.moveTo(15 * dir, -15);             // верхняя точка у крепления
+    mainCtx.lineTo(170 * dir, -50);            // верхний угол широкого раскрыва
+    mainCtx.lineTo(170 * dir, 50);             // нижний угол широкого раскрыва
+    mainCtx.lineTo(15 * dir, 15);              // нижняя точка у крепления
+    mainCtx.closePath();
+    mainCtx.fillStyle = '#e6e6e6';             // цвет алюминия
+    mainCtx.fill();
+    mainCtx.lineWidth = 1.5;
+    mainCtx.strokeStyle = '#888';
+    mainCtx.stroke();
+
+    // Линия жесткости по центру большого рупора (как на фото)
+    mainCtx.beginPath();
+    mainCtx.moveTo(15 * dir, 0);
+    mainCtx.lineTo(170 * dir, 0);
+    mainCtx.strokeStyle = 'rgba(255, 255, 255, 0.7)'; // белый полупрозрачный блик
+    mainCtx.stroke();
+
+    // 4. Центральное поворотное крепление (зубчатый диск)
+    mainCtx.beginPath();
+    mainCtx.arc(0, 0, 22, 0, Math.PI * 2);     // Внешний контур механизма
+    mainCtx.fillStyle = '#b0b0b0';
+    mainCtx.fill();
+    mainCtx.strokeStyle = '#666';
+    mainCtx.stroke();
+
+    // Внутреннее темное отверстие механизма
+    mainCtx.beginPath();
+    mainCtx.arc(0, 0, 12, 0, Math.PI * 2);
+    mainCtx.fillStyle = '#333';
+    mainCtx.fill();
+
+    // Небольшая ось/болт в самом центре
+    mainCtx.beginPath();
+    mainCtx.arc(0, 0, 4, 0, Math.PI * 2);
+    mainCtx.fillStyle = '#ddd';
+    mainCtx.fill();
+    mainCtx.stroke();
+}   
+             
+             else {
                     // ── Обычный рупор ──
                     mainCtx.beginPath();
                     mainCtx.moveTo(0,        -28);
