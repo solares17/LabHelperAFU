@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="/LabHelperAFU/style.css">
-<link rel="stylesheet" href="/LabHelperAFU/styles/stand-antenna.css">
+<link rel="stylesheet" href="/LabHelperAFU/styles/freq.css">
 </head>
 
 <body>
@@ -24,26 +24,160 @@
         </p>
         </div> 
 
-        
-        <div class="video-container">
-            <iframe width="560" height="450" src="https://www.youtube.com/embed/JF2TPR4Tkzw?si=ZqzvlIrDDrn9vQCP" 
-            title="YouTube video player"  frameborder="0" allowfullscreenn>
-            </iframe>
-        </div>
-        <div class="info-text">
-        <p>
-        Эмуляция лабораторного стенда:
-        </p>
-        </div> 
-       
 
+        <div class="emulator-container">
+  
+  <!-- СТАТУС-БАР -->
+  <div class="status-bar">
+    <div class="status-item">Питание: <span class="badge green">ON</span></div>
+    <div class="status-item">fc = <span id="sb-fc" class="hl-blue">2500</span> кГц</div>
+    <div class="status-item">Uвх = <span id="sb-amp" class="hl-blue">0.50</span> В</div>
+    <div class="status-item">Fм = <span id="sb-fm" class="hl-green">1000</span> Гц</div>
+    <div class="status-item">Детектор: <span id="sb-det" class="hl-orange">№1</span></div>
+    <div class="status-item">Q = <span id="sb-q" class="hl-text">Q1</span></div>
+    <div class="status-item">Uвых = <span id="sb-out" class="hl-orange">0.00</span> В</div>
+  </div>
+
+  <div class="emu-grid">
     
+    <!-- БЛОК 1: ГНЧ -->
+    <div class="emu-card">
+      <div class="card-header">
+        <span class="indicator green"></span> ГНЧ (Модулирующий)
+      </div>
+      
+      <div class="control-row">
+        <span>Статус:</span>
+        <span id="lf-status-txt" class="hl-green">Активен</span>
+      </div>
+      
+      <div class="control-row">
+        <label>Fм, Гц</label>
+        <input type="range" class="range-green" id="sl-fm" min="20" max="20000" step="10" value="1000">
+      </div>
+      
+      <div class="control-row">
+        <label>Uм, мВ</label>
+        <input type="range" class="range-green" id="sl-um" min="0" max="200" step="1" value="100">
+      </div>
+
+      <div class="digital-display">
+        <div>Fм: <span id="disp-fm">1000 Гц</span></div>
+        <div>Uм: <span id="disp-um">100 мВ</span></div>
+      </div>
+
+      <canvas id="osc-lf" class="osc-view" width="240" height="60"></canvas>
+
+      <div class="btn-row">
+        <button class="emu-btn danger" id="btn-lf-off" onclick="toggleLF()">Отключить</button>
+        <button class="emu-btn success hidden" id="btn-lf-on" onclick="toggleLF()">Включить</button>
+      </div>
     </div>
+
+    <!-- БЛОК 2: ГВЧ -->
+    <div class="emu-card">
+      <div class="card-header">
+        <span class="indicator blue"></span> ГВЧ (Несущая)
+      </div>
+      
+      <div class="control-row">
+        <span>Режим:</span>
+        <span class="badge blue">ЧМ</span>
+      </div>
+
+      <div class="control-row">
+        <label>fc, кГц</label>
+        <input type="range" class="range-blue" id="sl-fc" min="2200" max="2800" step="10" value="2500">
+      </div>
+
+      <div class="control-row">
+        <label>Uc, В</label>
+        <input type="range" class="range-blue" id="sl-amp" min="0.1" max="2.0" step="0.01" value="0.5">
+      </div>
+
+      <div class="digital-display">
+        <div>fc: <span id="disp-fc" class="hl-blue">2500.0 кГц</span></div>
+        <div>Uc: <span id="disp-amp" class="hl-blue">0.50 В</span></div>
+      </div>
+
+      <canvas id="osc-hf" class="osc-view" width="240" height="60"></canvas>
+    </div>
+
+    <!-- БЛОК 3: ВЫБОР ДЕТЕКТОРА -->
+    <div class="emu-card">
+      <div class="card-header">
+        <span class="indicator orange"></span> Настройки детектора
+      </div>
+
+      <div class="btn-col">
+        <button class="emu-btn active" id="det1" onclick="setDet(1)">№1 - Расстроенный контур</button>
+        <button class="emu-btn" id="det2" onclick="setDet(2)">№2 - Дробный детектор</button>
+        <button class="emu-btn" id="det3" onclick="setDet(3)">№3 - Фазовый детектор</button>
+      </div>
+
+      <div class="sub-label">Сопротивление:</div>
+      <div class="btn-row">
+        <button class="emu-btn active" id="qb1" onclick="setQ(1)">OFF</button>
+        <button class="emu-btn" id="qb2" onclick="setQ(2)">R1</button>
+        <button class="emu-btn" id="qb3" onclick="setQ(3)">R2</button>
+        <button class="emu-btn" id="qb4" onclick="setQ(4)">R1+R2</button>
+      </div>
+
+      <div class="btn-row" style="margin-top: auto; padding-top: 15px;">
+        <button class="emu-btn success" onclick="takeMeasurement()">Измерить точку</button>
+        <button class="emu-btn danger" onclick="clearChart()">Сбросить</button>
+      </div>
+    </div>
+
+    <!-- БЛОК 4: ВЫХОД (КТ4) -->
+    <div class="emu-card">
+      <div class="card-header">
+        <span class="indicator text"></span> Выход (КТ4)
+      </div>
+
+      <div class="meter-container">
+        <svg viewBox="0 0 200 90" class="analog-meter">
+          <rect x="0" y="0" width="200" height="90" rx="4" fill="#161b22" stroke="#30363d"/>
+          <path d="M 20 75 A 80 80 0 0 1 180 75" fill="none" stroke="#21262d" stroke-width="12"/>
+          <text x="100" y="25" fill="#8b949e" font-size="10" text-anchor="middle" font-family="sans-serif">U= Вольтметр</text>
+          <!-- Шкала -->
+          <line x1="100" y1="75" x2="100" y2="15" stroke="#f0883e" stroke-width="2" id="needle" class="meter-needle"/>
+          <circle cx="100" cy="75" r="5" fill="#8b949e"/>
+        </svg>
+      </div>
+
+      <div class="digital-display center">
+        U= <span id="disp-uout" class="hl-orange">0.00 В</span>
+      </div>
+
+      <div class="sub-label">Сигнал на выходе детектора:</div>
+      <canvas id="osc-out" class="osc-view" width="240" height="55"></canvas>
+    </div>
+
+    <!-- БЛОК 5: ГРАФИК -->
+    <div class="emu-card span-4">
+      <div class="card-header">
+        <span class="indicator blue"></span> Детекторная характеристика Uвых = f(fc)
+      </div>
+      <canvas id="main-chart" class="chart-view" width="1200" height="250"></canvas>
+      
+      <div class="chart-legend">
+        <span><span class="indicator green"></span> Дет. №1 (АД)</span>
+        <span><span class="indicator blue"></span> Дет. №2 (Дробный)</span>
+        <span><span class="indicator purple"></span> Дет. №3 (ФД)</span>
+        <span><span class="indicator orange"></span> Измеренная точка</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+        
 </div>
 
   
 <div id="include-footer"></div>
-<script src="/LabHelperAFU/scripts/stand-antenna.js"></script>
+<script src="/LabHelperAFU/scripts/freq.js"></script>
 <script src="/LabHelperAFU/scripts/include.js"></script>
 
 </body>
