@@ -108,4 +108,10 @@ input[type="checkbox"] {
   background: #05a4ba;
   color: white;
 }
+
 hr { border: 0; border-top: 1px solid #eee; margin: 10px 0; }
+.screen{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;font-family:var(--font-mono);font-size:14px;line-height:2;min-height:120px}
+.screen .row{display:flex;justify-content:space-between;gap:1rem}
+.screen .lbl{color:var(--color-text-secondary)}
+.screen .val{font-weight:500}
+.screen .sep{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:8px 0}
