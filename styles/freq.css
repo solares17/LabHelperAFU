@@ -1,0 +1,179 @@
+/* Область видимости ограничена .emulator-container, чтобы не ломать сайт */
+.emulator-container {
+  --emu-bg: transparent;
+  --emu-card: #161b22;
+  --emu-border: #30363d;
+  --emu-text: #c9d1d9;
+  --emu-text-muted: #8b949e;
+  
+  --emu-green: #2ea043;
+  --emu-blue: #58a6ff;
+  --emu-orange: #f0883e;
+  --emu-red: #da3633;
+  --emu-purple: #bc8cff;
+  
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--emu-text);
+  background: var(--emu-bg);
+  box-sizing: border-box;
+}
+
+.emulator-container * {
+  box-sizing: border-box;
+}
+
+/* Статус-бар */
+.emulator-container .status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: var(--emu-card);
+  border: 1px solid var(--emu-border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* Сетка */
+.emulator-container .emu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) {
+  .emulator-container .emu-grid { grid-template-columns: repeat(2, 1fr); }
+  .emulator-container .span-4 { grid-column: span 2 !important; }
+}
+@media (max-width: 600px) {
+  .emulator-container .emu-grid { grid-template-columns: 1fr; }
+  .emulator-container .span-4 { grid-column: span 1 !important; }
+}
+
+.emulator-container .span-4 { grid-column: span 4; }
+
+/* Карточки */
+.emulator-container .emu-card {
+  background: var(--emu-card);
+  border: 1px solid var(--emu-border);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.emulator-container .card-header {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--emu-border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Индикаторы */
+.emulator-container .indicator {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--emu-text-muted);
+}
+.indicator.green { background: var(--emu-green); }
+.indicator.blue { background: var(--emu-blue); }
+.indicator.orange { background: var(--emu-orange); }
+.indicator.red { background: var(--emu-red); }
+.indicator.purple { background: var(--emu-purple); }
+
+.emulator-container .badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  border: 1px solid;
+}
+.badge.green { border-color: var(--emu-green); color: var(--emu-green); }
+.badge.blue { border-color: var(--emu-blue); color: var(--emu-blue); }
+
+/* Элементы управления */
+.emulator-container .control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--emu-text-muted);
+}
+.emulator-container .control-row label { flex-shrink: 0; width: 60px; }
+.emulator-container .control-row input[type=range] { flex-grow: 1; margin-left: 10px; }
+
+/* Дисплеи */
+.emulator-container .digital-display {
+  background: #0d1117;
+  border: 1px solid var(--emu-border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 13px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.digital-display.center { justify-content: center; font-size: 15px; }
+
+/* Кнопки */
+.emulator-container .btn-row { display: flex; gap: 8px; width: 100%; }
+.emulator-container .btn-col { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+
+.emulator-container .emu-btn {
+  background: #21262d;
+  color: var(--emu-text);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: .2s;
+  flex: 1;
+  text-align: center;
+}
+.emu-btn:hover { background: #30363d; border-color: #8b949e; }
+.emu-btn.active { border-color: var(--emu-blue); color: var(--emu-blue); }
+.emu-btn.success { color: var(--emu-green); border-color: rgba(46,160,67,0.4); }
+.emu-btn.success:hover { background: #2ea043; color: #fff; }
+.emu-btn.danger { color: var(--emu-red); border-color: rgba(218,54,51,0.4); }
+.emu-btn.danger:hover { background: #da3633; color: #fff; }
+
+/* Канвасы */
+.emulator-container .osc-view {
+  background: #0d1117;
+  border: 1px solid var(--emu-border);
+  border-radius: 4px;
+  width: 100%;
+  display: block;
+  margin-bottom: 12px;
+}
+.emulator-container .chart-view {
+  width: 100%;
+  height: 250px;
+  background: #0d1117;
+  border: 1px solid var(--emu-border);
+  border-radius: 4px;
+  display: block;
+}
+
+/* Аналоговый прибор */
+.emulator-container .meter-container { margin-bottom: 12px; }
+.emulator-container .analog-meter { width: 100%; display: block; }
+.emulator-container .meter-needle { transform-origin: 100px 75px; transition: transform 0.2s ease-out; }
+
+/* Вспомогательные */
+.emulator-container .sub-label { font-size: 12px; color: var(--emu-text-muted); margin-bottom: 6px; }
+.emulator-container .chart-legend { display: flex; gap: 20px; margin-top: 12px; font-size: 13px; color: var(--emu-text-muted); justify-content: center; }
+.emulator-container .hidden { display: none !important; }
+
+/* Подсветка текста */
+.hl-green { color: var(--emu-green); }
+.hl-blue { color: var(--emu-blue); }
+.hl-orange { color: var(--emu-orange); }
+.hl-text { color: var(--emu-text); }
