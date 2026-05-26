@@ -26,7 +26,7 @@
 .emulator-container{
   font-family: var(--uoz-font);
   color: var(--uoz-text);
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto 2.5rem;
   padding: 0 1rem;
 }
