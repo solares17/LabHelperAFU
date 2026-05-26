@@ -1,5 +1,4 @@
-
-  /* ---------- Шрифты ---------- */
+/* ---------- Шрифты ---------- */
   @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
   /* ---------- Переменные (совместимы с любой темой) ---------- */
@@ -19,20 +18,13 @@
   }
 
   /* ---------- Обёртка ---------- */
-  .uoz-lab-meta {
-    font-family: var(--uoz-font);
-    color: var(--uoz-text);
-    max-width: 900px;
-    margin: 0 auto 2.5rem;
-    padding: 0 1rem;
-  }
-
-  /* ---------- Заголовок раздела ---------- */
   .uoz-section-header {
     display: flex;
     align-items: center;
     gap: .75rem;
     margin-bottom: 1rem;
+    font-family: var(--uoz-font);
+    color: var(--uoz-text);
   }
   .uoz-section-header .uoz-tag {
     font-size: .7rem;
@@ -61,6 +53,8 @@
     margin-bottom: .75rem;
     overflow: hidden;
     transition: border-color .2s;
+    font-family: var(--uoz-font);
+    color: var(--uoz-text);
   }
   .uoz-card:hover { border-color: rgba(61,139,255,.35); }
   .uoz-card.uoz-open { border-color: rgba(61,139,255,.45); }
@@ -152,21 +146,7 @@
     background: var(--uoz-border);
   }
 
-  /* ---------- Формулы ---------- */
-  .uoz-formula {
-    background: var(--uoz-code-bg);
-    border-left: 3px solid var(--uoz-accent);
-    border-radius: 0 6px 6px 0;
-    padding: .6rem 1rem;
-    font-family: var(--uoz-mono);
-    font-size: .82rem;
-    color: #a8d1ff;
-    margin: .6rem 0;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  /* ---------- Схема видов смесителей ---------- */
+  /* ---------- Схема видов детекторов ---------- */
   .uoz-mixer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -193,29 +173,6 @@
     color: var(--uoz-muted);
     line-height: 1.5;
   }
-
-  /* ---------- Таблица побочных каналов ---------- */
-  .uoz-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: .82rem;
-    margin: .7rem 0;
-  }
-  .uoz-table th {
-    background: rgba(61,139,255,.12);
-    color: var(--uoz-accent);
-    font-weight: 600;
-    padding: .45rem .75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--uoz-border);
-  }
-  .uoz-table td {
-    padding: .4rem .75rem;
-    color: var(--uoz-text);
-    border-bottom: 1px solid rgba(37,45,61,.6);
-    font-family: var(--uoz-mono);
-  }
-  .uoz-table tr:last-child td { border-bottom: none; }
 
   /* ---------- Задания ---------- */
   .uoz-task-list { list-style: none; padding: 0; margin: .5rem 0; }
@@ -275,7 +232,7 @@
     line-height: 18px;
   }
 
-  /* ---------- Спектрограмма побочных каналов (SVG-иллюстрация) ---------- */
+  /* ---------- Спектрограмма (SVG-иллюстрация) ---------- */
   .uoz-spectr-wrap {
     background: var(--uoz-code-bg);
     border: 1px solid var(--uoz-border);
