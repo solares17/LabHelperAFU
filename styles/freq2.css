@@ -16,7 +16,7 @@
     --uoz-font:      'Golos Text', sans-serif;
     --uoz-mono:      'JetBrains Mono', monospace;
   }
-.uoz-lab-meta {
+.uoz-lab-meta .emulator-container{
   font-family: var(--uoz-font);
   color: var(--uoz-text);
   max-width: 900px;
