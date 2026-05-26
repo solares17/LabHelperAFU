@@ -16,6 +16,13 @@
     --uoz-font:      'Golos Text', sans-serif;
     --uoz-mono:      'JetBrains Mono', monospace;
   }
+.uoz-lab-meta {
+  font-family: var(--uoz-font);
+  color: var(--uoz-text);
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  padding: 0 1rem;
+}
 
   /* ---------- Обёртка ---------- */
   .uoz-section-header {
