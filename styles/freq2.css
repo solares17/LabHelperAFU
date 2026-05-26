@@ -23,7 +23,10 @@
   margin: 0 auto 2.5rem;
   padding: 0 1rem;
 }
-
+h2 {
+  text-align: center;
+  color: #333;
+}
   /* ---------- Обёртка ---------- */
   .uoz-section-header {
     display: flex;
