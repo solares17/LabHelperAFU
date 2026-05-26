@@ -1,7 +1,6 @@
 const state = {
   fc: 2500, amp: 0.5, fm: 1000, um: 100, lfOn: true,
-  det: 1, Q: 1, t: 0,
-  measurements: []
+  det: 1, Q: 1, t: 0
 };
 
 // Цвета графиков (в стиле GitHub Dark)
@@ -83,9 +82,6 @@ function updateUI() {
   const udc = detectorOutput(state.fc, state.det, state.Q);
   el('disp-uout').textContent = udc.toFixed(3) + ' В';
   el('sb-out').textContent = udc.toFixed(3);
-  
-  // Анимация стрелки (от -85 до +85 градусов)
-  el('needle').style.transform = `rotate(${(udc / (state.amp * 0.9)) * 85}deg)`;
 }
 
 // --- Отрисовка Канвасов ---
@@ -118,26 +114,10 @@ function drawChart() {
   });
   ctx.globalAlpha = 1;
 
-  // Измеренные точки
-  state.measurements.forEach(m => {
-    ctx.beginPath();
-    ctx.arc((m.fc-2200)/600*W, H/2 - (m.u/maxV)*(H/2 - 10), 4, 0, 7);
-    ctx.fillStyle = colors[m.det]; ctx.fill();
-    ctx.strokeStyle = '#0d1117'; ctx.lineWidth = 1.5; ctx.stroke();
-  });
-
-  // Текущее положение
+  // Текущее положение (оранжевый маркер)
   ctx.beginPath();
   ctx.arc((state.fc-2200)/600*W, H/2 - (detectorOutput(state.fc, state.det, state.Q)/maxV)*(H/2 - 10), 6, 0, 7);
   ctx.fillStyle = '#f0883e'; ctx.fill();
-}
-
-function clearChart() { 
-  state.measurements = []; 
-}
-
-function takeMeasurement() {
-  state.measurements.push({fc: state.fc, det: state.det, Q: state.Q, u: detectorOutput(state.fc, state.det, state.Q)});
 }
 
 // --- Осциллографы ---
