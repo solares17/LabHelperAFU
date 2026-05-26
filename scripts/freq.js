@@ -28,14 +28,6 @@ function detectorOutput(fc, det, Q) {
   }
 }
 
-function lfOutput() {
-  if (!state.lfOn || state.um < 1) return 0;
-  // Крутизна характеристики (производная)
-  const slope = Math.abs((detectorOutput(state.fc+5, state.det, state.Q) - detectorOutput(state.fc-5, state.det, state.Q)) / 10);
-  const df = state.um * 0.5;
-  return Math.min(slope * df * (state.amp / 0.5), state.amp * 0.9) * 1000;
-}
-
 // --- Управление UI ---
 function setupListeners() {
   el('sl-fc').addEventListener('input', e => { state.fc = +e.target.value; updateUI(); });
@@ -134,14 +126,11 @@ function drawOsc(cvsId, color, type) {
   for (let px = 0; px < W; px += 2) {
     const t = (px / W) * (type === 'lf' ? 3 : 8);
     let y = 0;
-    if (type === 'lf') y = state.lfOn ? Math.sin(2*Math.PI*t) * (state.um/200) * 0.8 : 0;
-    else if (type === 'hf') {
+    if (type === 'lf') {
+      y = state.lfOn ? Math.sin(2*Math.PI*t) * (state.um/200) * 0.8 : 0;
+    } else if (type === 'hf') {
       const mod = state.lfOn ? Math.sin(2*Math.PI * t * (state.fm/(state.fc*1000)) * 0.1) : 0;
       y = Math.sin(2*Math.PI * t * (1 + 0.15*mod)) * state.amp;
-    } else { // out
-      const udc = detectorOutput(state.fc, state.det, state.Q);
-      const modulated = state.lfOn ? (lfOutput()/1000) * Math.sin(2*Math.PI * t * 0.8) : 0;
-      y = udc / (state.amp * 0.9) * 0.5 + modulated / state.amp;
     }
     const py = H/2 - y * (H/2 - 4);
     if (px === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
@@ -153,7 +142,6 @@ function animate() {
   state.t += 0.016;
   drawOsc('osc-lf', '#2ea043', 'lf');
   drawOsc('osc-hf', '#58a6ff', 'hf');
-  drawOsc('osc-out', '#f0883e', 'out');
   drawChart();
   requestAnimationFrame(animate);
 }
