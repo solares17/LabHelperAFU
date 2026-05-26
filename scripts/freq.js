@@ -3,30 +3,57 @@ const state = {
   det: 1, Q: 1, t: 0
 };
 
-// Цвета графиков (в стиле GitHub Dark)
 const colors = { 1: '#2ea043', 2: '#58a6ff', 3: '#bc8cff' };
 const el = (id) => document.getElementById(id);
 
-// --- Математические модели детекторов ---
-function detectorOutput(fc, det, Q) {
-  const amp = state.amp;
-  const fc0 = 2500;
-  const bw = 200 * [1.0, 0.7, 0.5, 0.35][Q-1]; 
 
-  if (det === 1) { // АД
-    const x = (fc - (fc0 + 80)) / (bw * 0.5);
-    let u = amp * 0.9 * x / (1 + x*x) * 2;
-    return +Math.max(-amp*0.9, Math.min(amp*0.9, u)).toFixed(3);
-  } else if (det === 2) { // Дробный
-    const x = (fc - fc0) / (bw * 0.6);
-    let u = amp * 0.75 * x / (1 + 0.5*x*x) * 1.8;
-    return +Math.max(-amp*0.8, Math.min(amp*0.8, u)).toFixed(3);
-  } else { // ФД
-    const x = (fc - fc0) / (bw * 0.8);
-    let u = -amp * 0.85 * Math.atan(x*1.5) / (Math.PI/2);
-    return +Math.max(-amp*0.85, Math.min(amp*0.85, u)).toFixed(3);
+const expData = [
+  { fc: 2200, d1_1: -0.05, d1_2: -0.02, d1_3: -0.01, d1_4: 0.00, d2_1: -0.20, d3_1: 0.40 },
+  { fc: 2250, d1_1: -0.08, d1_2: -0.04, d1_3: -0.02, d1_4: -0.01, d2_1: -0.22, d3_1: 0.42 },
+  { fc: 2300, d1_1: -0.15, d1_2: -0.08, d1_3: -0.04, d1_4: -0.02, d2_1: -0.26, d3_1: 0.44 },
+  { fc: 2350, d1_1: -0.30, d1_2: -0.15, d1_3: -0.08, d1_4: -0.05, d2_1: -0.32, d3_1: 0.45 },
+  { fc: 2400, d1_1: -0.45, d1_2: -0.28, d1_3: -0.15, d1_4: -0.10, d2_1: -0.40, d3_1: 0.40 },
+  { fc: 2450, d1_1: -0.25, d1_2: -0.45, d1_3: -0.30, d1_4: -0.20, d2_1: -0.25, d3_1: 0.20 },
+  { fc: 2500, d1_1:  0.00, d1_2:  0.00, d1_3:  0.00, d1_4:  0.00, d2_1:  0.00, d3_1: 0.00 },
+  { fc: 2550, d1_1:  0.25, d1_2:  0.45, d1_3:  0.30, d1_4:  0.20, d2_1:  0.25, d3_1: -0.20 },
+  { fc: 2600, d1_1:  0.45, d1_2:  0.28, d1_3:  0.15, d1_4:  0.10, d2_1:  0.40, d3_1: -0.40 },
+  { fc: 2650, d1_1:  0.30, d1_2:  0.15, d1_3:  0.08, d1_4:  0.05, d2_1:  0.32, d3_1: -0.45 },
+  { fc: 2700, d1_1:  0.15, d1_2:  0.08, d1_3:  0.04, d1_4:  0.02, d2_1:  0.26, d3_1: -0.44 },
+  { fc: 2750, d1_1:  0.08, d1_2:  0.04, d1_3:  0.02, d1_4:  0.01, d2_1:  0.22, d3_1: -0.42 },
+  { fc: 2800, d1_1:  0.05, d1_2:  0.02, d1_3:  0.01, d1_4:  0.00, d2_1:  0.20, d3_1: -0.40 }
+];
+
+// --- ИНТЕРПОЛЯЦИЯ (поиск значения между точками таблицы) ---
+function getTableValue(fc, det, Q) {
+  // Формируем ключ, например 'd1_2' (Детектор 1, Q=2). 
+  // Для 2 и 3 детектора в этом примере используем Q=1, если у тебя нет для них разных Q.
+  const key = det === 1 ? `d1_${Q}` : `d${det}_1`;
+
+  // Ищем нужный интервал в массиве
+  let lower = expData[0];
+  let upper = expData[expData.length - 1];
+
+  for (let i = 0; i < expData.length - 1; i++) {
+    if (fc >= expData[i].fc && fc <= expData[i + 1].fc) {
+      lower = expData[i];
+      upper = expData[i + 1];
+      break;
+    }
   }
+
+  // Если выкрутили ползунок за пределы таблицы — отдаем крайние значения
+  if (fc <= lower.fc) return (lower[key] || 0) * (state.amp / 0.5);
+  if (fc >= upper.fc) return (upper[key] || 0) * (state.amp / 0.5);
+
+  // Считаем пропорцию между двумя точками
+  const ratio = (fc - lower.fc) / (upper.fc - lower.fc);
+  const baseValue = lower[key] + ratio * (upper[key] - lower[key]);
+
+  // Умножаем на коэффициент амплитуды генератора (state.amp / 0.5), 
+  // чтобы ползунок Uc визуально влиял на размах графика и выходное напряжение.
+  return baseValue * (state.amp / 0.5);
 }
+
 
 // --- Управление UI ---
 function setupListeners() {
@@ -58,7 +85,6 @@ function toggleLF() {
 }
 
 function updateUI() {
-  // Обновление текст-боксов
   el('sb-fc').textContent = state.fc;
   el('sb-amp').textContent = state.amp.toFixed(2);
   el('sb-fm').textContent = state.fm;
@@ -70,8 +96,8 @@ function updateUI() {
   el('disp-fm').textContent = state.fm + ' Гц';
   el('disp-um').textContent = state.um + ' мВ';
 
-  // Расчет выходов
-  const udc = detectorOutput(state.fc, state.det, state.Q);
+  // Берем значение из нашей таблицы
+  const udc = getTableValue(state.fc, state.det, state.Q);
   el('disp-uout').textContent = udc.toFixed(3) + ' В';
   el('sb-out').textContent = udc.toFixed(3);
 }
@@ -84,41 +110,41 @@ function drawChart() {
 
   ctx.clearRect(0, 0, W, H);
   
-  // Центральная ось
   ctx.strokeStyle = '#30363d'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.stroke();
 
-  const maxV = state.amp * 0.95;
+  const maxV = state.amp * 0.95; // Масштаб по оси Y
   
-  // Теоретические кривые
+  // Рисуем кривые из таблицы
   [1,2,3].forEach(det => {
     ctx.beginPath();
     ctx.strokeStyle = colors[det];
     ctx.lineWidth = det === state.det ? 2.5 : 1;
     ctx.globalAlpha = det === state.det ? 1 : 0.3;
+    
+    // Идем по оси частот с шагом 5 кГц для гладкой линии
     for (let fc = 2200; fc <= 2800; fc += 5) {
-      const u = detectorOutput(fc, det, state.Q);
-      const px = (fc-2200) / 600 * W;
-      const py = H/2 - (u / maxV) * (H/2 - 10); // padding 10px
+      const u = getTableValue(fc, det, state.Q);
+      const px = (fc - 2200) / 600 * W;
+      const py = H/2 - (u / maxV) * (H/2 - 10); 
       if (fc === 2200) ctx.moveTo(px, py); else ctx.lineTo(px, py);
     }
     ctx.stroke();
   });
   ctx.globalAlpha = 1;
 
-  // Текущее положение (оранжевый маркер)
+  // Оранжевый маркер текущего положения
   ctx.beginPath();
-  ctx.arc((state.fc-2200)/600*W, H/2 - (detectorOutput(state.fc, state.det, state.Q)/maxV)*(H/2 - 10), 6, 0, 7);
+  const currentU = getTableValue(state.fc, state.det, state.Q);
+  ctx.arc((state.fc - 2200) / 600 * W, H/2 - (currentU / maxV) * (H/2 - 10), 6, 0, 7);
   ctx.fillStyle = '#f0883e'; ctx.fill();
 }
 
-// --- Осциллографы ---
 function drawOsc(cvsId, color, type) {
   const cvs = el(cvsId); if (!cvs) return;
   const ctx = cvs.getContext('2d'), W = cvs.width, H = cvs.height;
   ctx.clearRect(0,0,W,H);
   
-  // Сетка (1 линия по центру)
   ctx.strokeStyle = '#21262d'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.stroke();
   
