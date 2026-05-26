@@ -1,7 +1,7 @@
 /* Область видимости ограничена .emulator-container, чтобы не ломать сайт */
 .emulator-container {
   --emu-bg: transparent;
-  --emu-card: #161b22;
+  --emu-card: #0f455f;
   --emu-border: #30363d;
   --emu-text: #c9d1d9;
   --emu-text-muted: #8b949e;
