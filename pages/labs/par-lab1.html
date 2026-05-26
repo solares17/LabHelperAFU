@@ -30,20 +30,104 @@
             title="YouTube video player"  frameborder="0" allowfullscreenn>
             </iframe>
         </div>
-        <div class="info-text">
-        <p>
-        Эмуляция лабораторного стенда:
-        </p>
-        </div> 
-       
 
-    <div id="include-rupor"></div>
+
+
+        
+       
+<div class="emulator-wrapper">
+
+        <div class="app-title">Эмулятор АФУ</div>
+
+        <section class="panel top-panel">
+            <div class="control-group">
+                <label>Частота</label>
+                <div class="digital-display" style="min-width:140px;">2100 МГц</div>
+                <input type="hidden" id="freq" value="2100">
+            </div>
+        </section>
+
+        <section class="panel visual-panel">
+            <div class="antenna-roles">
+                <div class="antenna-role-group">
+                    <label>А1</label>
+                    <select id="role-a1">
+                        <option value="generator">Генератор</option>
+                        <option value="indicator">Индикатор</option>
+                    </select>
+                </div>
+                <div class="role-conflict-hint" id="role-conflict"></div>
+                <div class="antenna-role-group">
+                    <label>А2</label>
+                    <select id="role-a2">
+                        <option value="indicator">Индикатор</option>
+                        <option value="generator">Генератор</option>
+                    </select>
+                    <select id="ant-type-a2" style="margin-top:6px;">
+                        <option value="horn">Рупор</option>
+                        <option value="magnetic">Магнитная</option>
+                    </select>
+                </div>
+            </div>
+            <div class="canvas-wrap">
+                <canvas id="mainCanvas" width="800" height="280"></canvas>
+            </div>
+
+            <div class="sliders-container">
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label for="probe-slider">
+                            Каретка: <span class="slider-val" id="probe-value">15.0</span> см
+                        </label>
+                        <button class="btn-probe-toggle" id="btn-probe-toggle">ВЫКЛ</button>
+                    </div>
+                    <input type="range" id="probe-slider" min="0" max="30" value="15" step="0.1">
+                </div>
+
+                <div class="slider-group">
+                    <label for="angle-slider">
+                        Угол А2: <span class="slider-val" id="angle-value">0</span>°
+                    </label>
+                    <input type="range" id="angle-slider" min="-90" max="90" value="0">
+                </div>
+            </div>
+        </section>
+
+        <section class="panel bottom-panel">
+            <div class="control-group">
+                <label>Питание</label>
+                <button class="btn-power" id="btn-toggle">ВКЛ / ВЫКЛ</button>
+            </div>
+
+            <div class="control-group">
+                <label>Напряжённость</label>
+                <div class="digital-display" id="field-display">—</div>
+            </div>
+
+            
+
+            <div class="control-group">
+                <label for="attenuator">Аттенюатор</label>
+                <select id="attenuator">
+                    <option value="0">ВЫКЛ</option>
+                    <option value="-5">−5 dB</option>
+                    <option value="-10">−10 dB</option>
+                    <option value="-15">−15 dB</option>
+                    <option value="-20">−20 dB</option>
+                    <option value="-25">−25 dB</option>
+                    <option value="-30">−30 dB</option>
+                </select>
+            </div>
+        </section>
+
+    </div>
+        
     </div>
 </div>
 
   
 <div id="include-footer"></div>
-<script src="/LabHelperAFU/scripts/stand-antenna.js"></script>
+<script src="/LabHelperAFU/scripts/labs/script-zkk.js"></script>
 <script src="/LabHelperAFU/scripts/include.js"></script>
 
 </body>
