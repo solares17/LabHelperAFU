@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="/LabHelperAFU/style.css">
 <link rel="stylesheet" href="/LabHelperAFU/styles/freq.css">
+<link rel="stylesheet" href="/LabHelperAFU/styles/freq2.css">    
 </head>
 
 <body>
@@ -21,6 +22,181 @@
         <h2>Лабораторная работа - Исследование частотных детекторов</h2>
         </div> 
 
+
+
+        <div class="uoz-section-header">
+    <span class="uoz-tag">РПУ-02</span>
+    <h2>Исследование частотных детекторов</h2>
+  </div>
+
+  <div class="uoz-card" id="card-theory">
+    <button class="uoz-card-toggle" onclick="uozToggle('card-theory')" aria-expanded="false">
+      <span class="uoz-card-icon uoz-icon-theory">📚</span>
+      <span class="uoz-card-title">
+        Теоретические сведения
+        <span class="uoz-card-subtitle">Принципы построения частотных детекторов, виды преобразований</span>
+      </span>
+      <span class="uoz-chevron">▼</span>
+    </button>
+    <div class="uoz-card-body">
+
+      <h3>Общие сведения</h3>
+      <p>
+        <strong>Частотный детектор (ЧД)</strong> — устройство, предназначенное для выделения модулирующего сигнала из частотно-модулированного (ЧМ) колебания[cite: 3].
+        Процесс детектирования обычно сводится к преобразованию изменения частоты в изменение амплитуды или фазы, с последующим детектированием амплитудным или фазовым детектором[cite: 4, 5].
+      </p>
+
+      <h3>Типы исследуемых детекторов</h3>
+      <div class="uoz-mixer-grid">
+        <div class="uoz-mixer-card">
+          <strong>Детектор №1: На основе расстроенного контура</strong>
+          <span>
+            Осуществляет преобразование изменения частоты колебания в изменение амплитуды. Выделение сигнала происходит с помощью последующего диодного амплитудного детектора[cite: 4, 20].
+          </span>
+        </div>
+        <div class="uoz-mixer-card">
+          <strong>Детектор №2: Дробный детектор</strong>
+          <span>
+            Специфическая схема частотного детектора, выходное напряжение которого пропорционально отношению напряжений на элементах контура. Отличается пониженной чувствительностью к паразитной амплитудной модуляции[cite: 8, 21].
+          </span>
+        </div>
+        <div class="uoz-mixer-card">
+          <strong>Детектор №3: С фазовым преобразованием</strong>
+          <span>
+            Выполнен на основе фазового детектора с одиночным контуром. Преобразует изменение частоты ЧМ-сигнала в изменение фазы с последующим детектированием[cite: 5, 22].
+          </span>
+        </div>
+      </div>
+
+      <h3>Детекторная характеристика</h3>
+      <p>Основной характеристикой ЧД является зависимость постоянной составляющей на выходе от частоты входного сигнала U<sub>вых</sub> = f(f<sub>c</sub>)[cite: 49]. Линейный участок этой характеристики определяет рабочий диапазон детектора[cite: 50].</p>
+      
+      <div class="uoz-spectr-wrap" title="Типовая детекторная характеристика ЧД (S-кривая)">
+        <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg"
+             width="540" height="150" font-family="'JetBrains Mono',monospace" font-size="9">
+          <line x1="40" y1="80" x2="520" y2="80" stroke="#252d3d" stroke-width="1.5"/>
+          <line x1="280" y1="20" x2="280" y2="140" stroke="#252d3d" stroke-width="1.5"/>
+          
+          <polygon points="520,80 514,77 514,83" fill="#252d3d"/>
+          <polygon points="280,20 277,26 283,26" fill="#252d3d"/>
+          
+          <text x="525" y="83" fill="#6b7a99" font-size="10">fс</text>
+          <text x="260" y="20" fill="#6b7a99" font-size="10">U=</text>
+
+          <path d="M 80 80 C 180 80, 200 20, 280 80 C 360 140, 380 80, 480 80" 
+                fill="none" stroke="#3d8bff" stroke-width="2.5" stroke-linecap="round"/>
+          
+          <circle cx="280" cy="80" r="3" fill="#f5a623"/>
+          <text x="290" y="92" fill="#f5a623" font-size="9">fср</text>
+          
+          <line x1="218" y1="38" x2="218" y2="80" stroke="#252d3d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="208" y="92" fill="#6b7a99" font-size="8">fmin</text>
+          
+          <line x1="342" y1="122" x2="342" y2="80" stroke="#252d3d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="332" y="72" fill="#6b7a99" font-size="8">fmax</text>
+          
+          <path d="M 225 35 L 335 125" stroke="rgba(245,166,35,0.4)" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <text x="350" y="45" fill="#f5a623" font-size="8">Линейный рабочий участок</text>
+          <path d="M 345 42 L 290 60" stroke="#f5a623" stroke-width="1" fill="none" marker-end="url(#arrow)"/>
+          
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+                markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#f5a623" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+      <p style="font-size:.78rem; color:var(--uoz-muted); text-align:center; margin-top:-.2rem">
+        Рис. — Типовая детекторная характеристика частотного детектора
+      </p>
+
+    </div>
+  </div><div class="uoz-card" id="card-tasks">
+    <button class="uoz-card-toggle" onclick="uozToggle('card-tasks')" aria-expanded="false">
+      <span class="uoz-card-icon uoz-icon-task">⚙️</span>
+      <span class="uoz-card-title">
+        Задания к лабораторной работе
+        <span class="uoz-card-subtitle">Снятие характеристик, оценка искажений и фазовых сдвигов</span>
+      </span>
+      <span class="uoz-chevron">▼</span>
+    </button>
+    <div class="uoz-card-body">
+
+      <p style="margin-top:.7rem">
+        Генератор входного сигнала формирует ЧМ-сигнал в диапазоне f<sub>c</sub> = 2200-2800 кГц[cite: 16, 17]. Измерения проводятся с помощью встроенного прибора (PV) или осциллографа[cite: 23, 27].
+      </p>
+
+      <ul class="uoz-task-list">
+        <li>
+          <span class="uoz-task-num">1</span>
+          <div>
+            <strong>Снятие детекторных характеристик.</strong>
+            Изменяя частоту сигнала f<sub>c</sub> без модуляции (U<sub>м</sub> = 0), снимите зависимость постоянной составляющей U<sub>=</sub> на выходе для детекторов №1, №2 и №3[cite: 39, 55, 62]. Для детекторов №1 и №3 проведите измерения при различных значениях добротности контура (изменяя подключение шунтирующих резисторов R1 и R2) [cite: 44-48, 66-70]. Постройте графики и определите f<sub>ср</sub>[cite: 49, 50, 59, 60].
+          </div>
+        </li>
+        <li>
+          <span class="uoz-task-num">2</span>
+          <div>
+            <strong>Снятие частотных характеристик.</strong>
+            Установите несущую частоту, равную f<sub>ср</sub>. Включите генератор НЧ и поддерживайте U<sub>м</sub> в пределах 70–200 мВ, чтобы наблюдать неискаженную синусоиду [cite: 75-78]. Изменяя частоту модуляции F<sub>м</sub> от 20 Гц до 20 кГц, зафиксируйте эффективное значение напряжения U<sub>Ω</sub> на выходе для каждого детектора[cite: 79, 83].
+          </div>
+        </li>
+        <li>
+          <span class="uoz-task-num">3</span>
+          <div>
+            <strong>Сравнение коэффициентов передачи.</strong>
+            Для каждого из трех детекторов установите несущую частоту f<sub>ср</sub> и подайте модулирующий сигнал с эффективным значением U<sub>м</sub> = 100 мВ [cite: 85-97]. Зафиксируйте значения выходных низкочастотных напряжений U<sub>Ω1</sub>, U<sub>Ω2</sub>, U<sub>Ω3</sub> и сравните их величины[cite: 89, 93, 97, 98].
+          </div>
+        </li>
+        <li>
+          <span class="uoz-task-num">4</span>
+          <div>
+            <strong>Оценка искажений сигнала.</strong>
+            Установите оптимальные параметры (f<sub>ср</sub>, F<sub>м</sub> = 1000 Гц, неискаженная синусоида на осциллографе)[cite: 101, 102]. Плавно изменяйте несущую частоту f<sub>c</sub> переменным резистором и наблюдайте появление искажений формы сигнала[cite: 103]. Сопоставьте вид искажений с частотами перегибов детекторной характеристики[cite: 104].
+          </div>
+        </li>
+        <li>
+          <span class="uoz-task-num">5</span>
+          <div>
+            <strong>Дополнительное задание: Наблюдение фазы.</strong>
+            Подключите осциллограф к точке контроля ЧМ-сигнала. Добейтесь устойчивого изображения несущей без модуляции при развертке 0,5 мкс/дел[cite: 108, 110]. Увеличивая модулирующее напряжение U<sub>м</sub> до 200 мВ, наблюдайте «размывание» изображения, что демонстрирует изменение мгновенного значения фазы в процессе частотной модуляции[cite: 111, 112].
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div><div class="uoz-card" id="card-questions">
+    <button class="uoz-card-toggle" onclick="uozToggle('card-questions')" aria-expanded="false">
+      <span class="uoz-card-icon uoz-icon-q">❓</span>
+      <span class="uoz-card-title">
+        Контрольные вопросы
+        <span class="uoz-card-subtitle">Вопросы для допуска к работе и защиты результатов</span>
+      </span>
+      <span class="uoz-chevron">▼</span>
+    </button>
+    <div class="uoz-card-body">
+      <ol class="uoz-q-list">
+        <li>Какие функции выполняют частотные детекторы и по каким признакам они классифицируются? [cite: 33]</li>
+        <li>В чем заключаются принципы работы ЧД с фазовым, амплитудным и импульсным преобразованием? [cite: 34, 35, 117, 118]</li>
+        <li>Какие искажения могут претерпевать сигналы в частотных детекторах и какие меры предпринимают для их уменьшения? [cite: 116]</li>
+        <li>Как рассчитывают коэффициент передачи частотного детектора? [cite: 114]</li>
+        <li>Что происходит при совместном действии сигнала и шума на ЧД, и как проявляются его пороговые свойства? [cite: 114, 115]</li>
+        <li>Почему помехозащищенность широкополосной ЧМ выше помехозащищенности АМ? [cite: 115]</li>
+        <li>Какова методика измерения детекторной и частотной характеристик частотного детектора? [cite: 117]</li>
+        <li>Какие преимущества имеют схемы выполнения ЧД на транзисторах и микросхемах? [cite: 36]</li>
+      </ol>
+    </div>
+  </div>
+
+        <script>
+  function uozToggle(id) {
+    var card = document.getElementById(id);
+    var btn  = card.querySelector('.uoz-card-toggle');
+    var isOpen = card.classList.toggle('uoz-open');
+    btn.setAttribute('aria-expanded', isOpen);
+  }
+</script>
 
         <div class="emulator-container">
   
