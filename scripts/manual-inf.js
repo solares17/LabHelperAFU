@@ -14,7 +14,7 @@ if (manualsList) {
             </div>
 
             <div class="card-details">
-                <p>${manual.text}</p>
+                
                 <a href="${manual.downloadUrl}" download target="_blank" class="download-btn">
                     Скачать методичку
                 </a>
